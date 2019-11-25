@@ -1,0 +1,12 @@
+public class StudentsSetWithClass{
+
+    public Map<Id,Set<Id>> getStudentsSetWithClass(){
+        Map<Id,Set<Id>> result = new Map<Id,Set<Id>>();
+        Set<Id> classIds = new Set<Id>([SELECT Id FROM Class__c]);
+        for(Id cls : classIds){
+            Set<Id> relatedStudents = new Set<Id>([SELECT Id FROM Student__c WHERE Id =: cls]);
+            result.put(cls,relatedStudents);
+        }
+        return result;
+    }
+}
