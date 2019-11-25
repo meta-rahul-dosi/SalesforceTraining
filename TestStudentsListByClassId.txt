@@ -1,0 +1,20 @@
+/**
+ * Test Class to check whether we are able to fetch all the students of a class
+ */
+@isTest class TestStudentsListByClassId {
+    
+    // putting three students in a class and cross checking if we get all three students or not
+    @isTest static void testStudentsListByClassIdfunction(){
+        Class__c cls = new Class__c();
+        insert cls;
+    	Student__c[] std;
+        std[0] = new Student__c(FirstName__c='arjun', Class__c=cls.Id);
+        std[1] = new Student__c(FirstName__c='nakul', Class__c=cls.Id);
+        std[2] = new Student__c(FirstName__c='anirudh', Class__c=cls.Id);
+        insert std;
+        List<String> studentsList = new List<String>();        
+        Student__c[] students = [SELECT FirstName__c, LastName__c FROM Student__c WHERE Class__c =: cls.Id];
+        Integer numberOfStudents = students.size();
+        System.assertEquals(std.size(), numberOfStudents);
+    }
+}

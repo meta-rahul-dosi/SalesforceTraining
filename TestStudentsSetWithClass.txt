@@ -1,0 +1,25 @@
+/**
+ * test class to test
+ */
+@isTest 
+public class TestStudentsSetWithClass {
+    
+    @isTest
+    static void testStudentsSetWithClassFunction(){
+        Class__c newclass = new Class__c();
+        insert newclass;
+    	Student__c[] std;
+        std[0] = new Student__c(FirstName__c='arjun', Class__c=newclass.Id);
+        std[1] = new Student__c(FirstName__c='nakul', Class__c=newclass.Id);
+        std[2] = new Student__c(FirstName__c='anirudh', Class__c=newclass.Id);
+        insert std;
+        Set<Id> stdIds = new Set<Id>{std[0].Id, std[1].Id, std[2].id};
+        Map<Id,Set<Id>> result = new Map<Id,Set<Id>>();
+        Set<Id> classIds = new Set<Id>([SELECT Id FROM Class__c]);
+        for(Id cls : classIds){
+            Set<Id> relatedStudents = new Set<Id>([SELECT Id FROM Student__c WHERE Id =: cls]);
+            result.put(cls,relatedStudents);
+        }
+        System.assertEquals(result.get(newClass.Id), stdIds, 'all students set are not there in map with their classId');
+    }
+}
