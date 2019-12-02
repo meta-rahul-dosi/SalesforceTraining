@@ -33,7 +33,7 @@ public ApexPages.StandardSetController setCon{
     get{
         if(setCon == null){ 
             setCon = new ApexPages.StandardSetController(Database.query(query));
-            setCon.setPageSize(noOfRecords);  
+            setCon.setPageSize(noOfRecords);
         }            
         return setCon;
     }
@@ -45,7 +45,7 @@ public void searchAccounts(){
 }
 
 public List<Account> getAccounts(){
-    query = 'select Name , BillingCity , BillingState ,BillingCountry FROM Account ';
+    query = 'SELECT Name , BillingCity , BillingState ,BillingCountry FROM Account ';
     if(!String.isBlank(city) || !String.isBlank(state) || !String.isBlank(country)) {
         query+='WHERE' ;
         query+=String.isBlank(city)?'':' BillingCity LIKE '+'\'%'+city+'%\''+' AND ';
