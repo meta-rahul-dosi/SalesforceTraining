@@ -33,7 +33,7 @@ public class ManageClassController{
      * Method to update the edited class details.
      */
     public void updateClass(){
-        update SelectedClass;
+        UPDATE SelectedClass;
         Render = false;
     }
     
@@ -43,6 +43,6 @@ public class ManageClassController{
     public void deleteClass(){
         SelectedClass = [SELECT Name, Currency__c, MaxSize__c, MyCount__c FROM Class__c WHERE Id = :ClassId];
         Render = false;
-        delete SelectedClass;
+        DELETE SelectedClass;
     }
 }
