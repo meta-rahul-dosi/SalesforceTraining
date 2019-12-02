@@ -1,0 +1,10 @@
+<!-- VFPage to demonstrate json format -->
+<apex:page controller="JsonExampleController">
+    <apex:pageBlock>
+        <apex:pageBlockSection>
+            <apex:outputText>
+                {!jsonString}            
+            </apex:outputText>
+        </apex:pageBlockSection>
+    </apex:pageBlock> 
+</apex:page>
