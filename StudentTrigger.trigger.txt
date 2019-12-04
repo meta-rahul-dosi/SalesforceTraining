@@ -14,9 +14,8 @@ trigger StudentTrigger on Student__c (before insert, after insert){
     
     //trigger code to update MyCount field of Class object according to new student insertion
     if(trigger.isAfter){
-        for(Student__c everyStudent : trigger.new){
+        for(Class__c cls : [SELECT MyCount__c FROM Class__c WHERE Id=:trigger.new.Class__c]){
             if(trigger.isInsert){
-                Class__c cls = [SELECT MyCount__c FROM Class__c WHERE id=:everyStudent.Class__c];
                 cls.MyCount++;
             }
         }
