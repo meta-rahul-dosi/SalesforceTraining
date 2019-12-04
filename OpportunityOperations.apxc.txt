@@ -2,15 +2,15 @@
  * Class to update Opportunities whose BillToContact__c field is not null and Manager__c is null.
  */
 public class OpportunityOperations{
-
-    public static void updateOpportunities(List<Opportunity> Opportunities){
-        List<Opportunity> OpportunityList = new List<Opportunity>();
-        for(Opportunity opp: Opportunities){
+    // method to update opportunities on certain conditions
+    public static void updateOpportunities(List<Opportunity> opportunities){
+        List<Opportunity> opportunityList = new List<Opportunity>();
+        for(Opportunity opp: opportunities){
             if(opp.BillToContact__c != null && opp.Manager__c == null){
                 opp.Manager__c = opp.BillToContact__r.AccountId;
-                OpportunityList.add(opp);
+                opportunityList.add(opp);
             }
         }
-        upsert OpportunityList;
+        upsert opportunityList;
     }
 }
