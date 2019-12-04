@@ -1,3 +1,7 @@
+/*
+* this class is used to apply filters to billing city, billing state, billing country and fetch 10 accounts
+* also to apply pagination
+*/
 public class AccountController{
 
 public Integer noOfRecords{get;set;} 
@@ -44,9 +48,10 @@ public void searchAccounts(){
     setCon = null;
 }
 
+// method to apply filters over required fields
 public List<Account> getAccounts(){
     query = 'SELECT Name , BillingCity , BillingState ,BillingCountry FROM Account ';
-    if(!String.isBlank(city) || !String.isBlank(state) || !String.isBlank(country)) {
+    if(!String.isBlank(city) || !String.isBlank(state) || !String.isBlank(country)){
         query+='WHERE' ;
         query+=String.isBlank(city)?'':' BillingCity LIKE '+'\'%'+city+'%\''+' AND ';
         query+=String.isBlank(state)?'':' BillingState LIKE '+'\'%'+state+'%\''+' AND ';
