@@ -14,7 +14,7 @@ trigger ClassTrigger on Class__c (before insert, before delete, before update){
         List<Id> classIds = new List<Id>();
         for(Class__c cls : trigger.new){
             Class__c oldRecord = trigger.oldMap.get(cls.Id);
-            if(oldRecord.Custom_Status__c != 'reset' && cls.Custom_Status__c == 'reset'){
+            if(oldRecord.Custom_Status__c != trigger.new.Custom_Status__c && cls.Custom_Status__c == trigger.new.Custom_Status__c){
                 classIds.add(cls.Id);
             }
         }
