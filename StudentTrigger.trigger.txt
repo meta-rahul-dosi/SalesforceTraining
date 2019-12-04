@@ -1,4 +1,4 @@
-trigger StudentTrigger on Student__c (before insert, after insert, after update){
+trigger StudentTrigger on Student__c (before insert, after insert){
     
     // trigger code to restrict student insertion into a class if that class maximum capacity is reached.
     if(trigger.isBefore){
