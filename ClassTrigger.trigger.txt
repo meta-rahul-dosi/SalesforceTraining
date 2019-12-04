@@ -10,7 +10,7 @@ trigger ClassTrigger on Class__c (before insert, before delete, before update){
     }
     
     // trigger code to delete all related students record if class custom status is changed to reset
-    if(trigger.isUpdate){
+    if(trigger.isUpdate || trigger.isBefore){
         List<Id> classIds = new List<Id>();
         for(Class__c cls : trigger.new){
             Class__c oldRecord = trigger.oldMap.get(cls.Id);
