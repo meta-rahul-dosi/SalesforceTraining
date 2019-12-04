@@ -9,7 +9,9 @@ trigger StudentTrigger on Student__c (before insert, after insert){
                 studentsToBeInserted.add(everyStudent);
             }
         }
-        insert studentsToBeInserted;
+        if(studentsToBeInserted.size() > 0){
+            insert studentsToBeInserted;
+        }
     }
     
     //trigger code to update MyCount field of Class object according to new student insertion
