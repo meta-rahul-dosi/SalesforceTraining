@@ -9,14 +9,19 @@ trigger StudentTrigger on Student__c (before insert, after insert){
             }
         }
         if(studentsToBeInserted.size() > 0){
-            insert studentsToBeInserted;
+            INSERT studentsToBeInserted;
         }
     }
     
     //trigger code to update MyCount field of Class object according to new student insertion
     if(trigger.isAfter && trigger.isInsert){
+        List<Class__c> classListToBeUpdated = new List<Class__c>();
         for(Class__c cls : [SELECT MyCount__c FROM Class__c WHERE Id=:trigger.new.Class__c]){
                 cls.MyCount++;
+                classListToBeUpdated.add(cls);
+        }
+        if(listToBeUpdated > 0){
+            UPDATE classListToBeUpdated;
         }
     }
 }
