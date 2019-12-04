@@ -11,7 +11,7 @@ trigger OpportunityTrigger on Opportunity (after update){
         }
     }
     if(modifiedOpps.size() > 0){
-        update modifiedOpps;
+        UPDATE modifiedOpps;
     }
   }
 }
