@@ -1,6 +1,6 @@
 public class StudentsListByClassId {
 
-    static String[] getStudentsList(Id IdOfClass){
+    static String[] getStudentsListByClassId(Id IdOfClass){
 		List<String> studentsList = new List<String>();        
         Student__c[] students = [SELECT FirstName__c, LastName__c FROM Student__c WHERE Class__c =: IdOfClass];
         for(Student__c s : students){
