@@ -20,7 +20,7 @@ trigger StudentTrigger on Student__c (before insert, after insert){
                 cls.MyCount++;
                 classListToBeUpdated.add(cls);
         }
-        if(listToBeUpdated > 0){
+        if(classListToBeUpdated > 0){
             UPDATE classListToBeUpdated;
         }
     }
