@@ -19,6 +19,8 @@ trigger ClassTrigger on Class__c (before insert, before delete, before update){
             }
         }
         List<Student__c> studentList = [SELECT Id FROM Student__c WHERE Class__c IN: classIds];
-        delete studentList;
+        if(studentList.size() > 0){
+            delete studentList;
+        }
     }    
 }
