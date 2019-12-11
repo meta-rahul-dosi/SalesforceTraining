@@ -1,18 +1,18 @@
 public class QueryResultController{
     
     public String queryToExecute;
-    public String finalQuery ;
-    public List<string> LstFields{get;private set;}
-    public Integer StartingPageRecord{get;set;}
-    public Integer EndingPageRecord{get;set;}
-    public String FieldName{get;set;}
-    public boolean RenderMessage{get;set;}
+    public String finalQuery;
+    public List<string> lstFields{get;private set;}
+    public Integer startingPageRecord{get;set;}
+    public Integer endingPageRecord{get;set;}
+    public String fieldName{get;set;}
+    public boolean renderMessage{get;set;}
     
     public QueryResultController(){
         queryToExecute = '';
         finalQuery = '';
         setCon = null ;
-        RenderMessage = false;
+        renderMessage = false;
     }
     
     public ApexPages.StandardSetController setCon{
@@ -23,7 +23,7 @@ public class QueryResultController{
                     setCon.setPageSize(5);
                 }catch(QueryException ex){
                     ApexPages.addMessages(ex);
-                    RenderMessage = true;
+                    renderMessage = true;
                 }
             }
             return setCon;
@@ -35,31 +35,31 @@ public class QueryResultController{
         return this.queryToExecute;
     }
     
-    public void setqueryToExecute(String QueryString){
-        if(!this.queryToExecute.equalsIgnoreCase(QueryString)){
-            this.queryToExecute = QueryString;
+    public void setqueryToExecute(String queryString){
+        if(!this.queryToExecute.equalsIgnoreCase(queryString)){
+            this.queryToExecute = queryString;
             this.setCon = null;
             finalQuery = queryToExecute;
-            RenderMessage = false;
+            renderMessage = false;
         } 
     }
     
     public List<Sobject> getRecordType(){
-        List<Sobject> QueryResult;
+        List<Sobject> queryResult;
         try{
             QueryResult = setCon.getRecords();
         }catch(Exception ex){
             return null;
         }
         startingPageRecord = setCon.getPageNumber() * setCon.getPageSize() - (setCon.getPageSize() - 1);
-        EndingPageRecord = setCon.getPageNumber() * setCon.getPageSize() ;
-        Set<string> setFields = new Set<String>();
-        for(integer i = 0 ; i < QueryResult.size() ; i++){
+        endingPageRecord = setCon.getPageNumber() * setCon.getPageSize();
+        Set<String> setFields = new Set<String>();
+        for(Integer i=0 ; i<queryResult.size(); i++){
             setFields.addAll(QueryResult[i].getPopulatedFieldsAsMap().keySet());
         }
-        LstFields = new List<String>();
-        LstFields.addAll(setFields); 
-        return QueryResult;
+        lstFields = new List<String>();
+        lstFields.addAll(setFields); 
+        return queryResult;
     }
     
     public void sortData(){        
