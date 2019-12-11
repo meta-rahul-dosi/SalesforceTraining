@@ -1,0 +1,25 @@
+<apex:page controller="QueryEditorController">
+    <style>
+        .textArea{
+        resize: none;
+        width: 400px;
+        height: 40px;
+        font-size: 16px;
+        margin: 30px 10px 0 40px;
+        }
+    </style>
+    <apex:form >
+        <h1>
+            Query Editor
+        </h1> 
+        <br/>
+        <apex:outputPanel id="queryForm">
+            <apex:inputTextarea styleClass="textArea" value="{! queryString}" html-placeholder="Enter your query..."/>
+            <apex:commandButton styleClass="submitButton" value="Execute Query" action="{! executeThisQuery}"  reRender="result, queryForm" />
+            <apex:pageMessages />
+        </apex:outputPanel>
+        <apex:outputPanel id="result" >
+            <c:QueryResultComponent rendered="{! renderResult}" query="{! queryString}" />
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>
