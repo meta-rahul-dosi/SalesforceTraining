@@ -1,0 +1,16 @@
+<apex:component controller="QueryResultController">
+    <apex:attribute name="query" description="input query string" type="String" assignTo="{! queryToExecute}" />
+    <apex:pageBlock>
+        <apex:pageblockTable value="{!recordType}" var="record">
+            <apex:repeat value="{!lstFields}" var="fld">
+                <apex:column value="{!record[fld]}" >
+                    <apex:facet name="header">
+                        <apex:commandLink action="{!SortData}" value="{!fld}" rerender="result">
+                            <apex:param value="{!fld}" name="column" assignTo="{!fieldName}" ></apex:param>
+                        </apex:commandLink>
+                    </apex:facet>
+                </apex:column>
+            </apex:repeat>    
+        </apex:pageblockTable>
+    </apex:pageBlock>
+</apex:component>
