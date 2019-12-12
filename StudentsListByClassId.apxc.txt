@@ -1,0 +1,11 @@
+public class StudentsListByClassId {
+
+    public static String[] getStudentsListByClassId(Id IdOfClass){
+		List<String> studentsList = new List<String>();        
+        Student__c[] students = [SELECT FirstName__c, LastName__c FROM Student__c WHERE Class__c =: IdOfClass];
+        for(Student__c s : students){
+            studentsList.add(s.FirstName__c+' '+s.LastName__c);
+        }
+        return studentsList;
+    }
+}
